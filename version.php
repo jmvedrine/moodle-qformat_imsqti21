@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for the d2l question import format.
+ * Version information for the ims qti 2.1 question import format.
  *
  * @package    qformat_imsqti21
- * @copyright  2014 Jean-Michel Vedrine
+ * @copyright  Laurent Opprecht University of Geneva laurent.opprecht@unige.ch
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
