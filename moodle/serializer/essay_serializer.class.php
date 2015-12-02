@@ -12,7 +12,7 @@
 class EssaySerializer extends QuestionSerializer{
 
     static function factory($question, $target_root){
-        if(!defined("ESSAY") || $question->qtype != ESSAY){
+        if($question->qtype != 'essay'){
             return null;
         }else{
             return new self($target_root);

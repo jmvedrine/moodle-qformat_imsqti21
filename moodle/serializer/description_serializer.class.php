@@ -12,7 +12,7 @@
 class DescriptionSerializer extends QuestionSerializer{
 
     static function factory($question, $target_root){
-        if(!defined("DESCRIPTION") || $question->qtype != DESCRIPTION){
+        if($question->qtype != 'description'){
             return null;
         }else{
             return new self($target_root);

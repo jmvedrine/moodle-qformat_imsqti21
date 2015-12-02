@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Question builder for CALCULATED questions.
+ * Question builder for claculated questions.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch
@@ -10,16 +10,13 @@
 class CalculatedBuilder extends CalculatedBuilderBase{
 
     static function factory(QtiImportSettings $settings){
-        if(!defined('CALCULATED')){
-            return null;
-        }
 
         $item = $settings->get_reader();
         $category = $settings->get_category();
 
         //if it is a reimport
         if($data = $settings->get_data()){
-            if($data->qtype == CALCULATED){
+            if($data->qtype == 'calculated'){
                 return new self($category);
             }else{
                 return null;
@@ -49,7 +46,7 @@ class CalculatedBuilder extends CalculatedBuilderBase{
 
     public function create_question(){
         $result = parent::create_question();
-        $result->qtype = CALCULATED;
+        $result->qtype = 'calculated';
         $result->answers = array();
         $result->feedback = array();
         $result->fraction = array();

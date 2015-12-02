@@ -12,7 +12,7 @@
 class MatchingSerializer extends QuestionSerializer{
 
     static function factory($question, $target_root){
-        if(!defined("MATCH") || $question->qtype != MATCH){
+        if($question->qtype != 'match'){
             return null;
         }else{
             return new self($target_root);

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Question builder for DESCRIPTION questions.
+ * Question builder for description questions.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch
@@ -10,16 +10,13 @@
 class DescriptionBuilder extends QuestionBuilder{
 
     static function factory(QtiImportSettings $settings){
-        if(!defined('DESCRIPTION')){
-            return null;
-        }
 
         $item = $settings->get_reader();
         $category = $settings->get_category();
 
         //if it is a reimport
         if($data = $settings->get_data()){
-            if($data->qtype == DESCRIPTION){
+            if($data->qtype == 'description'){
                 return new self($category);
             }else{
                 return null;
@@ -36,7 +33,7 @@ class DescriptionBuilder extends QuestionBuilder{
 
     public function create_question(){
         $result = parent::create_question();
-        $result->qtype = DESCRIPTION;
+        $result->qtype = 'description';
         $result->fraction = 0;
         $result->defaultgrade = 0;
         $result->feedback = '';

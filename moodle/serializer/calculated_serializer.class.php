@@ -12,7 +12,7 @@
 class CalculatedSerializer extends CalculatedSerializerBase{
 
     static function factory($question, $target_root){
-        if(!defined("CALCULATED") || $question->qtype != CALCULATED){
+        if($question->qtype != 'calculated'){
             return null;
         }else{
             return new self($target_root);

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Render a QTI assessmentItem into moodle's MULTIANSWER/Cloze format.
+ * Render a QTI assessmentItem into moodle's multianswer/Cloze format.
  * University of Geneva
  * @author laurent.opprecht@unige.ch
  *

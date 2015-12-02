@@ -12,7 +12,7 @@
 class ShortanswerSerializer extends QuestionSerializer{
 
     static function factory($question, $target_root){
-        if(!defined('SHORTANSWER') || $question->qtype != SHORTANSWER){
+        if($question->qtype != 'shortanswer'){
             return null;
         }else{
             return new self($target_root);
@@ -20,7 +20,7 @@ class ShortanswerSerializer extends QuestionSerializer{
     }
 
     static function factory_subquestion($question, $resource_manager){
-        if(!defined("SHORTANSWER") || $question->qtype != SHORTANSWER){
+        if($question->qtype != 'shortanswer'){
             return new SubquestionSerializerEmpty();
         }else{
             return new ShortanswerSSubquestionSerializer($resource_manager);

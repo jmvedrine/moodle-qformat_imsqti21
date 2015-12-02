@@ -12,7 +12,7 @@
 class TrueFalseSerializer extends QuestionSerializer{
 
     static function factory($question, $target_root){
-        if(!defined("TRUEFALSE") || $question->qtype != TRUEFALSE){
+        if($question->qtype != 'truefalse'){
             return null;
         }else{
             return new self($target_root);

@@ -128,7 +128,7 @@ class SerializerBase{
 
 /**
  * Base class for questions serializers and subquestion serializers.
- * subquestion serializers are used by the MULTIANSWER question's type.
+ * subquestion serializers are used by the multianswer question's type.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Question builder for MULTICHOICE questions.
+ * Question builder for multichoice questions.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch
@@ -10,16 +10,13 @@
 class MultichoiceBuilder extends QuestionBuilder{
 
     static function factory(QtiImportSettings $settings){
-        if(!defined('MULTICHOICE')){
-            return null;
-        }
 
         $item = $settings->get_reader();
         $category = $settings->get_category();
 
         //if it is a reimport
         if($data = $settings->get_data()){
-            if($data->qtype == MULTICHOICE){
+            if($data->qtype == 'multichoice'){
                 return new self($category);
             }else{
                 return null;
@@ -41,7 +38,7 @@ class MultichoiceBuilder extends QuestionBuilder{
 
     public function create_question(){
         $result = parent::create_question();
-        $result->qtype = MULTICHOICE;
+        $result->qtype = 'multichoice';
         $result->fraction = array();
         $result->answer = array();
         $result->feedback = array();

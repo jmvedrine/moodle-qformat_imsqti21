@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Question builder for CALCULATED MULTICHOICE questions.
+ * Question builder for calculated multichoice questions.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch
@@ -10,16 +10,13 @@
 class CalculatedMultichoiceBuilder extends CalculatedBuilderBase{
 
     static function factory(QtiImportSettings $settings){
-        if(!defined('CALCULATEDMULTI')){
-            return null;
-        }
 
         $item = $settings->get_reader();
         $category = $settings->get_category();
 
         //if it is a reimport
         if($data = $settings->get_data()){
-            if($data->qtype == CALCULATEDMULTI){
+            if($data->qtype == 'calculatedmulti'){
                 return new self($category);
             }else{
                 return null;

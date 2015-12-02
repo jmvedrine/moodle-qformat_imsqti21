@@ -12,7 +12,7 @@
 class MultipleAnswerSerializer extends QuestionSerializer{
 
     static function factory($question, $target_root){
-        if(!defined("MULTIANSWER") || $question->qtype != MULTIANSWER){
+        if($question->qtype != 'multianswer'){
             return null;
         }else{
             return new self($target_root);
@@ -119,11 +119,3 @@ class MultipleAnswerSerializer extends QuestionSerializer{
     }
 
 }
-
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Question builder for MATCH questions.
+ * Question builder for matching questions.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch
@@ -10,16 +10,13 @@
 class MatchingBuilder extends QuestionBuilder{
 
     static function factory(QtiImportSettings $settings){
-        if(!defined('MATCH')){
-            return null;
-        }
 
         $item = $settings->get_reader();
         $category = $settings->get_category();
 
         //if it is a reimport
         if($data = $settings->get_data()){
-            if($data->qtype == MATCH){
+            if($data->qtype == 'match'){
                 return new self($category);
             }else{
                 return null;
@@ -41,7 +38,7 @@ class MatchingBuilder extends QuestionBuilder{
 
     public function create_question(){
         $result = parent::create_question();
-        $result->qtype = MATCH;
+        $result->qtype = 'match';
         $result->subquestions = array();
         $result->subanswers = array();
         $result->generalfeedback = '';

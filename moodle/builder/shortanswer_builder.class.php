@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Question builder for SHORTANSWER questions.
+ * Question builder for shortanswer questions.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch
@@ -10,16 +10,13 @@
 class ShortanswerBuilder extends QuestionBuilder{
 
     static function factory(QtiImportSettings $settings){
-        if(!defined('SHORTANSWER')){
-            return null;
-        }
 
         $item = $settings->get_reader();
         $category = $settings->get_category();
 
         //if it is a reimport
         if($data = $settings->get_data()){
-            if($data->qtype == SHORTANSWER){
+            if($data->qtype == 'shortanswer'){
                 return new self($category);
             }else{
                 return null;
@@ -43,7 +40,7 @@ class ShortanswerBuilder extends QuestionBuilder{
 
     public function create_question(){
         $result = parent::create_question();
-        $result->qtype = SHORTANSWER;
+        $result->qtype = 'shortanswer';
         $result->fraction = array();
         $result->answer = array();
         $result->feedback = array();

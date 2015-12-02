@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Question builder for ESSAY questions.
+ * Question builder for essay questions.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch
@@ -10,16 +10,13 @@
 class EssayBuilder extends QuestionBuilder{
 
     static function factory(QtiImportSettings $settings){
-        if(!defined("ESSAY")){
-            return null;
-        }
 
         $item = $settings->get_reader();
         $category = $settings->get_category();
 
         //if it is a reimport
         if($data = $settings->get_data()){
-            if($data->qtype == ESSAY){
+            if($data->qtype == 'essay'){
                 return new self($category);
             }else{
                 return null;
@@ -37,7 +34,7 @@ class EssayBuilder extends QuestionBuilder{
 
     public function create_question(){
         $result = parent::create_question();
-        $result->qtype = ESSAY;
+        $result->qtype = 'essay';
         $result->fraction = 0; //essays have no score untill graded by the teacher.
         $result->feedback = $this->format_text('');
         return $result;

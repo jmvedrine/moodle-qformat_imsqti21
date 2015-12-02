@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Question builder for NUMERICAL questions.
+ * Question builder for numerical questions.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch
@@ -10,16 +10,13 @@
 class NumericalBuilder extends NumericalBuilderBase{
 
     static function factory(QtiImportSettings $settings){
-        if(!defined('NUMERICAL')){
-            return null;
-        }
 
         $item = $settings->get_reader();
         $category = $settings->get_category();
 
         //if it is a reimport
         if($data = $settings->get_data()){
-            if($data->qtype == NUMERICAL){
+            if($data->qtype == 'numerical'){
                 return new self($category);
             }else{
                 return null;
@@ -51,7 +48,7 @@ class NumericalBuilder extends NumericalBuilderBase{
 
     public function create_question(){
         $result = parent::create_question();
-        $result->qtype = NUMERICAL;
+        $result->qtype = 'numerical';
         $result->instructions = '';
         $result->answer = array();
         $result->fraction = array();

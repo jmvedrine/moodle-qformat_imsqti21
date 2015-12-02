@@ -28,13 +28,11 @@ class qformat_imsqti21 extends qformat_default {
     }
 
     function provide_import(){
-        global $CFG;
-        return $CFG->version >= 2007101509; // i.e. moodle 1.9 or later
+        return true;
     }
 
     function provide_export(){
-        global $CFG;
-        return $CFG->version >= 2007101509; // i.e. moodle 1.9 or later
+        return true;
     }
 
     function export_file_extension() {
@@ -81,9 +79,3 @@ class qformat_imsqti21 extends qformat_default {
         }
     }
 }
-
-
-
-
-
-

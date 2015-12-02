@@ -2,7 +2,7 @@
 
 /**
  *
- * Question builder for MULTIANSWER/Cloze questions.
+ * Question builder for multianswer/Cloze questions.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch
@@ -11,16 +11,13 @@
 class ClozeBuilder extends QuestionBuilder{
 
     static function factory(QtiImportSettings $settings){
-        if(!defined('MULTIANSWER')){
-            return null;
-        }
 
         $item = $settings->get_reader();
         $category = $settings->get_category();
 
         //if it is a reimport
         if($data = $settings->get_data()){
-            if($data->qtype == MULTIANSWER){
+            if($data->qtype == 'multianswer'){
                 return new self($category);
             }else{
                 return null;
@@ -46,7 +43,7 @@ class ClozeBuilder extends QuestionBuilder{
 
     public function create_question(){
         $result = parent::create_question();
-        $result->qtype = MULTIANSWER;
+        $result->qtype = 'multianswer';
         return $result;
     }
 

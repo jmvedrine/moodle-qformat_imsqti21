@@ -18,7 +18,7 @@ class MultiplechoiceSerializer extends QuestionSerializer{
     const FEEDBACK_PARTIALY_CORRECT = 'FEEDBACK_PARTIALY_CORRECT';
 
     static function factory($question, $target_root){
-        if(!defined("MULTICHOICE") || $question->qtype != MULTICHOICE){
+        if($question->qtype != 'multichoice'){
             return null;
         }else{
             return new self($target_root);
@@ -26,7 +26,7 @@ class MultiplechoiceSerializer extends QuestionSerializer{
     }
 
     static function factory_subquestion($question, $resource_manager){
-        if(!defined("MULTICHOICE") || $question->qtype != MULTICHOICE){
+        if($question->qtype != 'multichoice'){
             return new SubquestionSerializerEmpty();
         }else{
             return new MultipleChoiceSubquestionSerializer($resource_manager);

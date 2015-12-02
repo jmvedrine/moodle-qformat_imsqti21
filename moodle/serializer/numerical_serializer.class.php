@@ -12,7 +12,7 @@
 class NumericalSerializer extends NumericalSerializerBase{
 
     static function factory($question, $target_root){
-        if(!defined("NUMERICAL") || $question->qtype != NUMERICAL){
+        if($question->qtype != 'numerical'){
             return null;
         }else{
             return new self($target_root);
@@ -20,7 +20,7 @@ class NumericalSerializer extends NumericalSerializerBase{
     }
 
     static function factory_subquestion($question, $resource_manager){
-        if(!defined("NUMERICAL") || $question->qtype != NUMERICAL){
+        if($question->qtype != 'numerical'){
             return new SubquestionSerializerEmpty();
         }else{
             return new NumericalSubquestionSerializer($resource_manager);
