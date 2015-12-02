@@ -37,7 +37,7 @@ class MultiplechoiceSerializer extends QuestionSerializer{
         parent::__construct($target_root);
     }
 
-    public function add_response_declaration($item, $question){
+    public function add_response_declaration(ImsQtiWriter $item, $question){
         $cardinality = $question->options->single ? ImsQtiWriter::CARDINALITY_SINGLE : ImsQtiWriter::CARDINALITY_MULTIPLE;
         $identity = ImsQtiWriter::RESPONSE;
         $result = $item->add_responseDeclaration($identity, $cardinality, ImsQtiWriter::BASETYPE_IDENTIFIER);
@@ -79,7 +79,7 @@ class MultiplechoiceSerializer extends QuestionSerializer{
         return $result;
     }
 
-    protected function add_response_processing($item, $question){
+    protected function add_response_processing(ImsQtiWriter  $item, $question){
         $result = parent::add_response_processing($item, $question);
         $this->add_overall_feedback_processing($result, $question);
         return $result;
@@ -103,11 +103,11 @@ class MultiplechoiceSerializer extends QuestionSerializer{
         return $result;
     }
 
-    protected function add_score_processing($response_processing, $question){
+    protected function add_score_processing(ImsQtiWriter $response_processing, $question){
         return $response_processing->add_standard_response_map_response();
     }
 
-    protected function add_modal_feedback($item, $question){
+    protected function add_modal_feedback(ImsQtiWriter $item, $question){
         $result = parent::add_modal_feedback($item, $question);
         $this->add_overall_feedback($item, $question);
         return $result;
@@ -134,7 +134,7 @@ class MultiplechoiceSerializer extends QuestionSerializer{
         $item->add_modalFeedback(self::OVERALL_FEEDBACK, self::FEEDBACK_PARTIALY_CORRECT, 'show')->add_flow($text);
     }
 
-    protected function add_interaction($body, $question){
+    protected function add_interaction(ImsQtiWriter $body, $question){
         $max_choices = $question->options->single ? 1 : 0;
         $shuffle = $question->options->shuffleanswers;
         $result = $body->add_choiceInteraction(ImsQtiWriter::RESPONSE, $max_choices, $shuffle);

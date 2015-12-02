@@ -85,7 +85,7 @@ class CalculatedSerializerBase extends NumericalSerializerBase{
         return $result;
     }
 
-    protected function add_answer_feedback_processing($response_processing, $question){
+    protected function add_answer_feedback_processing(ImsQtiWriter $response_processing, $question){
         $result = $response_processing->add_responseCondition();
         $response_id = ImsQtiWriter::RESPONSE;
         $outcome_id = ImsQtiWriter::FEEDBACK;
@@ -130,7 +130,7 @@ class CalculatedSerializerBase extends NumericalSerializerBase{
         return $result;
     }
 
-    protected function translate_question_text($text, $text_format=self::FORMAT_HTML, $question){
+    protected function translate_question_text($text, $text_format=self::FORMAT_HTML, $question=null){
         $result = parent::translate_question_text($text, $text_format, $question);
         $pattern = "/^\{[a-zA-Z_][a-zA-Z0-9_]*\}/";;
         $datasets = isset($question->options->datasets) ? $question->options->datasets : array();

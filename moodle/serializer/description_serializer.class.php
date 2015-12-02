@@ -27,19 +27,19 @@ class DescriptionSerializer extends QuestionSerializer{
         parent::__construct($target_root);
     }
 
-    protected function add_score_declaration($item, $question){
+    protected function add_score_declaration(ImsQtiWriter $item, $question){
         return null;
     }
 
-    protected function add_response_declaration($item, $question){
+    protected function add_response_declaration(ImsQtiWriter $item, $question){
         return null;
     }
 
-    protected function add_response_processing($item, $question){
+    protected function add_response_processing(ImsQtiWriter  $item, $question){
         return false;
     }
 
-    protected function add_outcome_declaration($item, $question){
+    protected function add_outcome_declaration(ImsQtiWriter $item, $question){
         return $this->add_general_feedback_declaration($item, $question);
     }
 }

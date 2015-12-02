@@ -285,7 +285,7 @@ class QuestionSerializer extends QuestionSerializerBase{
         return $result;
     }
 
-    protected function add_score_processing($response_processing, $question){
+    protected function add_score_processing(ImsQtiWriter $response_processing, $question){
         return null;
     }
 

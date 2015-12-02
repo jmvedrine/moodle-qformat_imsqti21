@@ -39,38 +39,28 @@ class qformat_imsqti21 extends qformat_default {
         return '.zip';
     }
 
-    function importprocess(){
+    public function importprocess($category) {
         $importer = new QtiImport($this->log);
         return $importer->import($this->filename, $this->realfilename, $this->course, $this->category, $this->stoponerror);
     }
 
     function exportprocess(){
-        if(!$export_dir = make_upload_directory($this->question_get_export_dir())) {
-            $this->notify_lang('cannotcreatepath');
-            return false;
-        }
 
         $export = new QtiExport($this->log);
         $questions = $export->get_questions($this->category);
-        $this->notify_lang('export', '', count($questions));
+//        $this->notify_lang('export', '', count($questions));
         $export->add($questions);
         if($export->get_question_count()==0){
             $result = false;
             $this->notify_lang('noquestions');
         }else{
-            $result = $export->save($this->get_export_file_path());
+            $result = $export->save();
         }
-        $this->notify_lang('done', 'quiz_overview');
+//        $this->notify_lang('done', 'quiz_overview');
         return $result;
     }
 
-    //END MOODLE qformat_default interface
-
-    protected function get_export_file_path(){
-        global $CFG;
-        $result = $CFG->dataroot.'/'.$this->question_get_export_dir().'/'.$this->filename.'.zip';
-        return $result;
-    }
+    //END MOODLE qformat_default interface.
 
     public function __call($name, $args){
         $f = array($this->log, $name);

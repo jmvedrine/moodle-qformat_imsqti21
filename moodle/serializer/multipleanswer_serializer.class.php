@@ -32,7 +32,7 @@ class MultipleAnswerSerializer extends QuestionSerializer{
         return QuestionSerializer::factory_subquestion($subquestion, $this->get_resource_manager());
     }
 
-    protected function add_outcome_declaration($item, $question){
+    protected function add_outcome_declaration(ImsQtiWriter $item, $question){
         $result = parent::add_outcome_declaration($item, $question);
         foreach($question->options->questions as $subquestion){
             $this->serializer($subquestion)->add_score_declaration($item, $subquestion);
@@ -43,7 +43,7 @@ class MultipleAnswerSerializer extends QuestionSerializer{
         return $result;
     }
 
-    protected function add_response_declaration($item, $question){
+    protected function add_response_declaration(ImsQtiWriter $item, $question){
         foreach($question->options->questions as $subquestion){
             $result = $this->serializer($subquestion)->add_response_declaration($item, $subquestion);
         }
@@ -70,7 +70,7 @@ class MultipleAnswerSerializer extends QuestionSerializer{
         }
     }
 
-    protected function add_response_processing($item, $question){
+    protected function add_response_processing(ImsQtiWriter $item, $question){
         $result = parent::add_response_processing($item, $question);
         foreach($question->options->questions as $subquestion){
             $this->serializer($subquestion)->add_feedback_processing($result, $subquestion);
@@ -99,7 +99,7 @@ class MultipleAnswerSerializer extends QuestionSerializer{
 
     }
 
-    protected function add_interaction($body, $question){
+    protected function add_interaction(ImsQtiWriter $body, $question){
         return null;
     }
 

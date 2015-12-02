@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Question builder for TRUEFALSE questions.
+ * Question builder for truefalse questions.
  *
  * University of Geneva
  * @author laurent.opprecht@unige.ch
@@ -10,15 +10,13 @@
 class TruefalseBuilder extends QuestionBuilder{
 
     static function factory(QtiImportSettings $settings){
-        if(!defined('TRUEFALSE')){
-            return null;
-        }
+
         $item = $settings->get_reader();
         $category = $settings->get_category();
 
         //if it is a reimport
         if($data = $settings->get_data()){
-            if($data->qtype == TRUEFALSE){
+            if($data->qtype == 'truefalse'){
                 return new self($category);
             }else{
                 return null;
@@ -49,7 +47,7 @@ class TruefalseBuilder extends QuestionBuilder{
 
     public function create_question(){
         $result = parent::create_question();
-        $result->qtype = TRUEFALSE;
+        $result->qtype = 'truefalse';
         $result->fraction = array();
         $result->answer = array();
         $result->feedbacktrue = array('text'=>'', 'format'=>FORMAT_HTML, 'itemid'=>null);

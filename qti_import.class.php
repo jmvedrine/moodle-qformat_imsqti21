@@ -98,7 +98,7 @@ class QtiImport{
     }
 
     protected function get_default_category($cid){
-        $context = get_context_instance(CONTEXT_COURSE, $cid);
+        $context = context_course::instance($cid);
         $result = question_get_default_category($context->id);
         $result = $result ? $result : question_make_default_categories(array($context));
         return $result;

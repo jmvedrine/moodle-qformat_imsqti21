@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Transforms an IMS QTI expression into a moodle's expression used by CALCULATED questions.
+ * Transforms an IMS QTI expression into a moodle's expression used by calculated questions.
  * I.e. a PHP expression where variables's name have the {variable_name} format.
  *
  * University of Geneva

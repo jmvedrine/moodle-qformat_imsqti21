@@ -85,7 +85,7 @@ class QtiExport{
             }
             return $result;
         }else{
-            $this->notify_lang('export', '', $question);
+//            $this->notify_lang('export', '', $question);
             $filepath = $this->get_question_filepath($question);
             if(! $serializer = $this->create_serializer($question)){
                 return $this->notify_lang('unknownquestiontype', '', $question);
@@ -106,11 +106,16 @@ class QtiExport{
         }
     }
 
-    public function save($path){
+    public function save(){
         $this->manifest->save($this->temp .'/'. ImsCpmanifestWriter::MANIFEST_NAME);
-        $result = MoodleUtil::archive_directory($this->temp, $path);
+        $zipfile = $this->temp . '/export.zip';
+        $result = MoodleUtil::archive_directory($this->temp, $zipfile);
+        $zipcontent = file_get_contents($zipfile);
+
+        // Remove the temporary directory.
         fulldelete($this->temp);
-        return $result;
+
+        return $zipcontent;
     }
 
     public function get_questions($category, $include_category = false, $include_hidden = false){
@@ -176,7 +181,7 @@ class QtiExport{
     function get_context_by_category_id($category) {
         global $DB;
         $contextid = $DB->get_field('question_categories', 'contextid', array('id'=>$category));
-        $context = get_context_instance_by_id($contextid);
+        $context = context::instance_by_id($contextid);
         return $context;
     }
 

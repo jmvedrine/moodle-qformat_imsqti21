@@ -27,7 +27,7 @@ class TrueFalseSerializer extends QuestionSerializer{
         parent::__construct($target_root);
     }
 
-    protected function add_response_declaration($item, $question){
+    protected function add_response_declaration(ImsQtiWriter $item, $question){
         $result = parent::add_response_declaration($item, $question);
         $correct_response = $result->add_correctResponse();
         $mapping = $result->add_mapping();
@@ -42,7 +42,7 @@ class TrueFalseSerializer extends QuestionSerializer{
         return $result;
     }
 
-    protected function add_score_processing($response_processing, $question){
+    protected function add_score_processing(ImsQtiWriter $response_processing, $question){
         return $response_processing->add_standard_response_map_response();
     }
 
@@ -56,7 +56,7 @@ class TrueFalseSerializer extends QuestionSerializer{
         }
     }
 
-    protected function add_interaction($body, $question){
+    protected function add_interaction(ImsQtiWriter $body, $question){
         $result = $body->add_choiceInteraction();
         foreach($question->options->answers as $answer){
             $identifier = $answer->answer;

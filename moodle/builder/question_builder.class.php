@@ -117,7 +117,7 @@ class QuestionBuilder{
     function get_context() {
         if($category = $this->get_category()){
             $contextid = $category->contextid;
-            $context = get_context_instance_by_id($contextid);
+            $context = context::instance_by_id($contextid);
             return $context;
         }else{
             return null;
@@ -187,7 +187,7 @@ class QuestionBuilder{
         return $result;
     }
 
-    protected function create_question($data = null){
+    public function create_question(){
         $default = new qformat_default();
         $result = $default->defaultquestion();
         $result->usecase = 0; // Ignore case

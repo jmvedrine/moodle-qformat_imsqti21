@@ -59,7 +59,7 @@ class MoodleUtil{
             $pieces = explode('/', $url);
             $courseid = (int)array_shift($pieces);
             $relativepath = '/'.implode('/', $pieces);
-            $context = get_context_instance(CONTEXT_COURSE, $courseid);
+            $context = context_course::instance($courseid);
             $fullpath = $context->id.'course_content0'.$relativepath;
             $fs = get_file_storage();
             $file = $fs->get_file_by_hash(sha1($fullpath));
@@ -79,11 +79,14 @@ class MoodleUtil{
     }
 
     public static function create_temp_directory(){
-        global $CFG;
-        $result = $CFG->dataroot.'/temp/'.time().'/';
-        fulldelete($result);
-        FileUtil::ensure_directory($result);
-        return $result;
+        global $CFG, $USER;
+        // Create a temporary directory for the files.
+        $uniquecode = time();
+        $tempdir = 'qformat_imsqti21/' . $USER->id . '/' . $uniquecode;
+        if (!$path = make_temp_directory($tempdir)) {
+            throw new moodle_exception('cannotcreatepath', 'question', '', $path);
+        }
+        return $path . '/';
     }
 
     static function get_catalog_name(){

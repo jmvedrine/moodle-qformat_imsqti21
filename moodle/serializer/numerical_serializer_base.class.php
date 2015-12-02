@@ -27,7 +27,7 @@ class NumericalSerializerBase extends QuestionSerializer{
         parent::__construct($target_root);
     }
 
-    protected function add_outcome_declaration($item, $question){
+    protected function add_outcome_declaration(ImsQtiWriter $item, $question){
         $result = parent::add_outcome_declaration($item, $question);
         $this->add_overall_feedback_declaration($item, $question);
 
@@ -151,7 +151,7 @@ class NumericalSerializerBase extends QuestionSerializer{
         }
     }
 
-    protected function add_modal_feedback($item, $question){
+    protected function add_modal_feedback(ImsQtiWriter $item, $question){
         $result = parent::add_modal_feedback($item, $question);
         $this->add_overall_feedback($item, $question);
         return $result;

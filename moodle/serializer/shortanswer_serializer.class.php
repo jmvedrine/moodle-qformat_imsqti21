@@ -42,7 +42,7 @@ class ShortanswerSerializer extends QuestionSerializer{
         return $result;
     }
 
-    protected function add_score_processing($response_processing, $question){
+    protected function add_score_processing(ImsQtiWriter $response_processing, $question){
         $result = $response_processing->add_responseCondition();
         $response_id = ImsQtiWriter::RESPONSE;
         $outcome_id = ImsQtiWriter::SCORE;
@@ -67,7 +67,7 @@ class ShortanswerSerializer extends QuestionSerializer{
         return $result;
     }
 
-    protected function add_answer_feedback_processing($response_processing, $question){
+    protected function add_answer_feedback_processing(ImsQtiWriter $response_processing, $question){
         $result = $response_processing->add_responseCondition();
         $response_id = ImsQtiWriter::RESPONSE;
         $outcome_id = ImsQtiWriter::FEEDBACK;

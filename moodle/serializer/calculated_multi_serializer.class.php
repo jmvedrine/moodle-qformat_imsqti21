@@ -28,7 +28,7 @@ class CalculatedMultiSerializer extends CalculatedSerializerBase{
         parent::__construct($target_root);
     }
 
-    protected function add_response_declaration(ImsQtiWriter  $item, $question){
+    protected function add_response_declaration(ImsQtiWriter $item, $question){
           //main response
           $cardinality = $question->options->single ? ImsQtiWriter::CARDINALITY_SINGLE : ImsQtiWriter::CARDINALITY_MULTIPLE;
           $base_type = ImsQtiWriter::BASETYPE_IDENTIFIER;
@@ -82,7 +82,7 @@ class CalculatedMultiSerializer extends CalculatedSerializerBase{
     }
   }
 
-  protected function add_response_processing($item, $question){
+  protected function add_response_processing(ImsQtiWriter $item, $question){
     $result = parent::add_response_processing($item, $question);
     $this->add_overall_feedback_processing($result, $question);
     return $result;

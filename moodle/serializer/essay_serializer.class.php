@@ -27,7 +27,7 @@ class EssaySerializer extends QuestionSerializer{
         parent::__construct($target_root);
     }
 
-    protected function add_interaction($body, $question){
+    protected function add_interaction(ImsQtiWriter $body, $question){
         return $body->add_extendedTextInteraction();
     }
 
@@ -37,7 +37,7 @@ class EssaySerializer extends QuestionSerializer{
         return $this->score;
     }
 
-    protected function add_response_processing($item, $question){
+    protected function add_response_processing(ImsQtiWriter $item, $question){
         return false;
     }
 
